@@ -1,0 +1,10 @@
+language: java
+dist: trusty
+branches:
+ only: master
+jdk:
+  - oraclejdk8
+before_script: cd cafemenu
+script:
+  - mvn clean test coveralls:report
+
