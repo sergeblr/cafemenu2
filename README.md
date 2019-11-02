@@ -1,4 +1,4 @@
-### CafeMenu ```devrep```
+### CafeMenu 2
 
 >Builds: 
 [![Build Status](https://travis-ci.org/sergeblr/devrep.svg?branch=master)](https://travis-ci.org/sergeblr/devrep)
@@ -12,7 +12,7 @@
 
 
 ### Project description
- Cafemenu - application for cafe employees to control of making orders (adding/editing items), filter them by date&time, editing and summarize by items price inside & items quantity.
+ Cafemenu - application for cafe employees to control of making orders (adding/editing items), filter them by date&time, editing and summarize by items price inside & item quantity.
 
 ### Prerequisites
 - jdk11

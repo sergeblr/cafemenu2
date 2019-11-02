@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
+@PropertySource("classpath:application.properties")
 public class WebApplication {
 
     @Value("${rest.url}")
