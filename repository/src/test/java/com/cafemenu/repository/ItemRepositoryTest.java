@@ -4,7 +4,10 @@ import com.cafemenu.entity.Item;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
@@ -14,7 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
+@ContextConfiguration(classes = {TestConfig.class})
 @DataJpaTest
+@TestPropertySource("classpath:test.properties")
 public class ItemRepositoryTest {
 
     private static final String WRAP = "Wrap";
@@ -25,12 +30,12 @@ public class ItemRepositoryTest {
 
     @Test
     public void findAll() {
-        List<Item> items = (List<Item>) itemRepository.findAll();
+        List<Item> items = itemRepository.findAll();
         assertNotNull(items);
         assertTrue(items.size() > 0);
     }
 
-    /**
+/**
     @Test
     public void findItemById() {
         Item testItem = itemRepository.findById(1).get();

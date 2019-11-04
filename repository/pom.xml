@@ -6,7 +6,6 @@
 
   <artifactId>repository</artifactId>
   <name>Cafe Menu Repository</name>
-  <packaging>jar</packaging>
 
   <parent>
     <artifactId>cafemenu2</artifactId>
@@ -40,16 +39,12 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.4.4.Final</version>
+    </dependency>
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-
-    </plugins>
-  </build>
 
 </project>
