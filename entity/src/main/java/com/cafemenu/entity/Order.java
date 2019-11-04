@@ -1,35 +1,33 @@
-package com.cafemenu.entity;
+/**package com.cafemenu.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "order_d")
 public class Order {
 
-    /**
-     * order id
-     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer orderId;
 
-    /**
-     * order maked Employee id
-     */
+    @Column(nullable = false)
     private Integer orderEmployeeId;
 
-    /**
-     * Order Time
-     */
+    @CreationTimestamp
     private LocalDateTime orderDateTime;
 
-    /**
-     * Get Order ID
-     * @return
-     */
-    public Integer getOrderId() { return orderId; }
 
-    /**
-     * Set Order ID
-     * @param orderId
-     */
-    public void setOrderId(Integer orderId) { this.orderId = orderId; }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
 
     public Integer getOrderEmployeeId() {
         return orderEmployeeId;
@@ -39,7 +37,11 @@ public class Order {
         this.orderEmployeeId = orderEmployeeId;
     }
 
-    public LocalDateTime getOrderDateTime() { return orderDateTime; }
+    public LocalDateTime getOrderDateTime() {
+        return orderDateTime;
+    }
 
-    public void setOrderDateTime(LocalDateTime orderDateTime) { this.orderDateTime = orderDateTime; }
-}
+    public void setOrderDateTime(LocalDateTime orderDateTime) {
+        this.orderDateTime = orderDateTime;
+    }
+}**/

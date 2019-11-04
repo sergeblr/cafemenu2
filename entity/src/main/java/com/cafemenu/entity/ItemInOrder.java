@@ -1,33 +1,42 @@
-package com.cafemenu.entity;
+/**package com.cafemenu.entity;
 
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "item_in_order")
 public class ItemInOrder {
 
-    /**
-     * Item In Order - Order ID
-     */
+    @EmbeddedId
+    private IioKey iioKey;
+
+    @Column(nullable = false)
     private Integer iioOrderId;
 
-    /**
-     * Item In Order - Item ID (from Item)
-     */
+    @Column(nullable = false)
     private Integer iioItemId;
 
-    /**
-     * Item In Order - Item name (from Item)
-     */
+    @Column(nullable = false)
     private String iioItemName;
 
-    /**
-     * Item In Order - Item price (from Item)
-     */
+    @Column(nullable = false)
     private BigDecimal iioItemPrice;
 
-    /**
-     * Item In Order - Item count
-     */
+    @Column(nullable = false)
     private Integer iioItemCount;
+
+
+    
+    public IioKey getIioKey() {
+        return iioKey;
+    }
+
+    public void setIioKey(IioKey iioKey) {
+        this.iioKey = iioKey;
+    }
 
     public Integer getIioOrderId() {
         return iioOrderId;
@@ -68,4 +77,4 @@ public class ItemInOrder {
     public void setIioItemCount(Integer iioItemCount) {
         this.iioItemCount = iioItemCount;
     }
-}
+}                 **/
