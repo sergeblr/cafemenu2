@@ -7,9 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @Configuration
-@EnableJpaAuditing
 @EnableAutoConfiguration
 @EntityScan(basePackages = "com.cafemenu.entity")
-@ComponentScan(basePackages = "com.cafemenu.repository")
+//@ComponentScan(basePackages = "com.cafemenu.repository")
 public class TestConfig {
 }

@@ -4,7 +4,6 @@ import com.cafemenu.entity.Item;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -16,10 +15,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {TestConfig.class})
 @DataJpaTest
-@TestPropertySource("classpath:test.properties")
+@TestPropertySource("classpath:test.properties")        // Use test.properties in test dir, if commented -> use main application.properties
 public class ItemRepositoryTest {
 
     private static final String WRAP = "Wrap";
@@ -33,8 +33,10 @@ public class ItemRepositoryTest {
         List<Item> items = itemRepository.findAll();
         assertNotNull(items);
         assertTrue(items.size() > 0);
-    }
 
+        //
+        items.forEach(item -> System.out.println(" #"+item.getItemId()+"="+item.getItemName()));
+    }
 /**
     @Test
     public void findItemById() {
@@ -50,6 +52,44 @@ public class ItemRepositoryTest {
         assertNotNull(testItem);
         assertTrue(testItem.getItemName().equals("Nuggets"));
         assertEquals("Nuggets",testItem.getItemName());
+    }
+
+    @Test
+    public void add() {
+        Item testItem = new Item();
+        testItem.setItemName(WRAP);
+        testItem.setItemPrice(PRICE);
+        Item newItem = itemRepository.save(testItem);
+        assertNotNull(newItem.getItemId());
+        assertEquals(WRAP,newItem.getItemName());
+        assertEquals(PRICE,newItem.getItemPrice());
+    }
+
+    @Test
+    public void update() {
+        Item testItem = new Item();
+        testItem.setItemName(WRAP);
+        testItem.setItemPrice(PRICE);
+        testItem = itemRepository.save(testItem);
+        testItem.setItemName("Frie");
+        testItem.setItemPrice(new BigDecimal("6.5"));
+        itemRepository.save(testItem);
+        Item updatedItem = itemRepository.findById(testItem.getItemId()).get();
+        assertTrue(testItem.getItemId().equals(updatedItem.getItemId()));
+        assertTrue(testItem.getItemName().equals(updatedItem.getItemName()));
+        assertTrue(testItem.getItemPrice().equals(updatedItem.getItemPrice()));
+    }
+
+    @Test
+    public void delete() {
+        Item testItem = new Item();
+        testItem.setItemName(WRAP);
+        testItem.setItemPrice(PRICE);
+        testItem = itemRepository.save(testItem);
+        List<Item> items = itemRepository.findAll();
+        int sizeBefore = items.size();
+        itemRepository.deleteById(testItem.getItemId());
+        assertTrue((sizeBefore - 1) == itemRepository.findAll().size());
     }
 **/
 }

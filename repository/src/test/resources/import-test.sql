@@ -1,6 +1,6 @@
-INSERT INTO item (item_name, item_price) VALUES ('BurgerX', 5.00);
-INSERT INTO item (item_name, item_price) VALUES ('NuggetsX', 3.25);
-INSERT INTO item (item_name, item_price) VALUES ('French friedX', 2.50);
+INSERT INTO item (item_name, item_price) VALUES ('Burger', 5.00);
+INSERT INTO item (item_name, item_price) VALUES ('Nuggets', 3.25);
+INSERT INTO item (item_name, item_price) VALUES ('9999999French fried', 2.50);
 INSERT INTO item (item_name, item_price) VALUES ('Coffee', 1.55);
 INSERT INTO item (item_name, item_price) VALUES ('Tea', 1.10);
 INSERT INTO item (item_name, item_price) VALUES ('ChickenBurger', 3.50);

@@ -8,13 +8,13 @@ import java.math.BigDecimal;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)   // IDENTITY - use for H2 DB, instead SEQUENCE
     //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
-    //@SequenceGenerator(name="id_seq", sequenceName = "id_seq", allocationSize = 255)
+    //@SequenceGenerator(name="id_seq", sequenceName = "id_sequence", allocationSize = 1, initialValue = 1)        // allocationSize - values count in sequence per database operation, more = DB less loaded, but many values wasted useless...
     @Column(name = "item_id", updatable = false, nullable = false)
     private Integer itemId;
 
-    @Column(name = "item_name", length = 255, unique = true, nullable = false)
+    @Column(name = "item_name", length = 255, unique = false, nullable = false)
     private String itemName;
 
     @Column(name = "item_price", nullable = false)
