@@ -81,16 +81,16 @@
                 <artifactId>repository</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
+            <!--<dependency>
                 <groupId>com.cafemenu</groupId>
-                <artifactId>ser</artifactId>
+                <artifactId>service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.cafemenu</groupId>
                 <artifactId>service-api</artifactId>
                 <version>${project.version}</version>
-            </dependency>
+            </dependency>-->
 
         </dependencies>
     </dependencyManagement>
