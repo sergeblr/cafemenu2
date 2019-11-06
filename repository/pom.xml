@@ -49,6 +49,13 @@
       <scope>runtime</scope>
     </dependency>
 
+    <dependency>  <!-- Embedded PostgreSQL for tests -->
+      <groupId>io.zonky.test</groupId>
+      <artifactId>embedded-database-spring-test</artifactId>
+      <version>1.5.1</version>
+      <scope>test</scope>
+    </dependency>
+
     <!--<dependency>  &lt;!&ndash; H2 InMem &ndash;&gt;
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
