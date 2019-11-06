@@ -49,18 +49,24 @@
       <scope>runtime</scope>
     </dependency>
 
-    <dependency>  <!-- Embedded PostgreSQL for tests -->
+    <dependency>  <!-- PostgreSQL tests embedded DB -->
+      <groupId>com.opentable.components</groupId>
+      <artifactId>otj-pg-embedded</artifactId>
+      <version>0.13.1</version>
+    </dependency>
+
+<!--    <dependency>  &lt;!&ndash; Embedded PostgreSQL for tests &ndash;&gt;
       <groupId>io.zonky.test</groupId>
       <artifactId>embedded-database-spring-test</artifactId>
       <version>1.5.1</version>
       <scope>test</scope>
-    </dependency>
+    </dependency>-->
 
-    <!--<dependency>  &lt;!&ndash; H2 InMem &ndash;&gt;
+    <dependency>  <!-- H2 inMem -->
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>runtime</scope>
-    </dependency>-->
+    </dependency>
 
   </dependencies>
 

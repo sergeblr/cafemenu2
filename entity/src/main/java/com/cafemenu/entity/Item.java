@@ -4,13 +4,15 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+//@Data     // @Data = @ToString, @EqualsAndHashCode, @Getter / @Setter and @RequiredArgsConstructor together.
 @Table(name = "item")
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)   // IDENTITY - use for H2 DB, instead SEQUENCE
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
-    //@SequenceGenerator(name="id_seq", sequenceName = "id_sequence", allocationSize = 1, initialValue = 1)        // allocationSize - values count in sequence per database operation, more = DB less loaded, but many values wasted useless...
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)   // IDENTITY - use for H2 DB, instead SEQUENCE
+    @GeneratedValue(strategy = GenerationType.IDENTITY)     // IDENTITY - generating ID on DB side !
+    //@SequenceGenerator(name="id_seq", sequenceName = "id_seq_name", allocationSize = 1, initialValue = 1)        // allocationSize - values count in sequence per database operation, more = DB less loaded, but many values wasted uselessly...
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")     // SEQUENCE - Generating ID's at Hibernate layer???
     @Column(name = "item_id", updatable = false, nullable = false)
     private Integer itemId;
 

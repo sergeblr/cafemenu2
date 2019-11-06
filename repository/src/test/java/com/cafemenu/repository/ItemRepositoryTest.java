@@ -1,17 +1,16 @@
 package com.cafemenu.repository;
 
 import com.cafemenu.entity.Item;
-import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -20,13 +19,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 
-@ExtendWith(SpringExtension.class)
+//@ExtendWith(SpringExtension.class)    // Tell JUnit5 to enable Spring support (from SpringBoot 2.1 -> already included in @DataJpaTest)
+//@RunWith(SpringRunner.class)      // For JUnit4
 @ContextConfiguration(classes = {TestConfig.class})
 @DataJpaTest
-//@TestPropertySource("classpath:test.properties")        // Use test.properties in test dir, if commented -> use main application.properties
-@AutoConfigureTestDatabase(replace = NONE)
-@AutoConfigureEmbeddedDatabase
-@Sql("classpath:import-test.sql")
+@TestPropertySource("classpath:test.properties")        // Use test.properties in test dir, if this line is commented -> use main application.properties
+@AutoConfigureTestDatabase(replace = NONE)      // DO NOT Replace Application database settings -> with Hibernate TEST database
+//@AutoConfigureEmbeddedDatabase
+//@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:import-test.sql")     // Run this SQL before EACH test
+@Sql(scripts = "classpath:import-test.sql")     // Run this SQL script before test
 public class ItemRepositoryTest {
 
     private static final String WRAP = "Wrap";
@@ -34,6 +35,7 @@ public class ItemRepositoryTest {
 
     @Autowired
     private ItemRepository itemRepository;
+
 
     @Test
     public void findAll() {
@@ -44,7 +46,7 @@ public class ItemRepositoryTest {
         //
         items.forEach(item -> System.out.println(" #"+item.getItemId()+"="+item.getItemName()));
     }
-/**
+
     @Test
     public void findItemById() {
         Item testItem = itemRepository.findById(1).get();
@@ -98,5 +100,5 @@ public class ItemRepositoryTest {
         itemRepository.deleteById(testItem.getItemId());
         assertTrue((sizeBefore - 1) == itemRepository.findAll().size());
     }
-**/
+
 }
