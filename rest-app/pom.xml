@@ -18,9 +18,8 @@
     <!-- CafeMenu modules: -->
     <dependency>
       <groupId>com.cafemenu</groupId>
-      <artifactId>entity</artifactId>
+      <artifactId>service</artifactId>
     </dependency>
-
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -35,6 +34,18 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
+
+  <build>
+    <!-- Tomcat embedded (port in resources/application.properties) -->
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
 
 </project>

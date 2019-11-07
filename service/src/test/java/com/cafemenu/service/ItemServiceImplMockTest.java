@@ -5,6 +5,7 @@ import com.cafemenu.entity.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -24,24 +25,24 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class ItemServiceImplMockTest {
 
     @Mock
-    private ItemDao mockItemdao;
+    private ItemRepository mockItemRepository;
 
     private ItemServiceImpl itemServiceImplUnderTest;
 
     @BeforeEach
     public void setUp() {
         initMocks(this);
-        itemServiceImplUnderTest = new ItemServiceImpl(mockItemdao);
+        itemServiceImplUnderTest = new ItemServiceImpl(mockItemRepository);
     }
 
     @Test
     public void testAddSingle() {
         final Item item = createItem(2);
-        when(mockItemdao.add(any(Item.class))).thenReturn(item);
+        when(mockItemRepository.save(any(Item.class))).thenReturn(item);
         
         itemServiceImplUnderTest.add(item);
 
-        verify(mockItemdao).add(item);
+        verify(mockItemRepository).save(item);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class ItemServiceImplMockTest {
         
         itemServiceImplUnderTest.update(item);
 
-        verify(mockItemdao).update(item);
+        verify(mockItemRepository).save(item);
     }
 
     @Test
@@ -60,13 +61,13 @@ public class ItemServiceImplMockTest {
 
         itemServiceImplUnderTest.delete(itemId);
 
-        verify(mockItemdao).delete(0);
+        verify(mockItemRepository).deleteById(itemId);
     }
 
     @Test
     public void testFindAll() {
         final List<Item> expectedResult = Arrays.asList();
-        //when(mockItemdao.findAll()).thenReturn(Arrays.asList());
+        //when(mockItemRepository.findAll()).thenReturn(Arrays.asList());
 
         final List<Item> result = itemServiceImplUnderTest.findAll();
         
@@ -78,7 +79,7 @@ public class ItemServiceImplMockTest {
         final Integer itemId = 0;
         final Item expectedResult = new Item();
         expectedResult.setItemName("MockItemName");
-        when(mockItemdao.findItemById(0)).thenReturn(Optional.of(expectedResult));
+        when(mockItemRepository.findById(itemId)).thenReturn(Optional.of(expectedResult));
         
         final Item result = itemServiceImplUnderTest.findItemById(itemId);
 
@@ -90,7 +91,7 @@ public class ItemServiceImplMockTest {
         final String itemName = "Nuggets";
         final Item expectedResult = new Item();
         expectedResult.setItemName("Nuggets");
-        when(mockItemdao.findItemByName("Nuggets")).thenReturn(Optional.of(expectedResult));
+        when(mockItemRepository.findByItemName("Nuggets")).thenReturn(Optional.of(expectedResult));
 
         final Item result = itemServiceImplUnderTest.findItemByName(itemName);
 

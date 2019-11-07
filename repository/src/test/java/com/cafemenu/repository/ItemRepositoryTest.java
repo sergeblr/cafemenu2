@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlMergeMode;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
@@ -24,10 +25,11 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @ContextConfiguration(classes = {TestConfig.class})
 @DataJpaTest
 @TestPropertySource("classpath:test.properties")        // Use test.properties in test dir, if this line is commented -> use main application.properties
-@AutoConfigureTestDatabase(replace = NONE)      // DO NOT Replace Application database settings -> with Hibernate TEST database
+@AutoConfigureTestDatabase(replace = NONE)      // NONE = @DataJpaTest will no do replacing configured datasource by in-memory datasource (without this line - it does it)
 //@AutoConfigureEmbeddedDatabase
 //@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:import-test.sql")     // Run this SQL before EACH test
 @Sql(scripts = "classpath:import-test.sql")     // Run this SQL script before test
+@SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
 public class ItemRepositoryTest {
 
     private static final String WRAP = "Wrap";
@@ -49,18 +51,24 @@ public class ItemRepositoryTest {
 
     @Test
     public void findItemById() {
-        Item testItem = itemRepository.findById(1).get();
-        assertNotNull(testItem);
-        assertTrue(testItem.getItemId().equals(1));
-        assertEquals("Burger",testItem.getItemName());
+        Item testItem = new Item();
+        testItem.setItemName(WRAP);
+        testItem.setItemPrice(PRICE);
+        testItem = itemRepository.save(testItem);
+        Item foundItem = itemRepository.findById(testItem.getItemId()).get();
+        assertNotNull(foundItem);
+        assertTrue(foundItem.getItemId().equals(testItem.getItemId()));
     }
 
     @Test
     public void findItemByName() {
-        Item testItem = itemRepository.findByItemName("Nuggets").get();
-        assertNotNull(testItem);
-        assertTrue(testItem.getItemName().equals("Nuggets"));
-        assertEquals("Nuggets",testItem.getItemName());
+        Item testItem = new Item();
+        testItem.setItemName(WRAP);
+        testItem.setItemPrice(PRICE);
+        testItem = itemRepository.save(testItem);
+        Item foundItem = itemRepository.findByItemName(testItem.getItemName()).get();
+        assertNotNull(foundItem);
+        assertTrue(foundItem.getItemName().equals(testItem.getItemName()));
     }
 
     @Test

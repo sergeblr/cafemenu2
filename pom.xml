@@ -19,9 +19,9 @@
     <modules>
         <module>entity</module>
         <module>repository</module>
-        <!--<module>service</module>
+        <module>service</module>
         <module>service-api</module>
-        <module>rest-app</module>-->
+        <module>rest-app</module>
     </modules>
 
     <properties>
@@ -81,7 +81,7 @@
                 <artifactId>repository</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--<dependency>
+            <dependency>
                 <groupId>com.cafemenu</groupId>
                 <artifactId>service</artifactId>
                 <version>${project.version}</version>
@@ -90,7 +90,12 @@
                 <groupId>com.cafemenu</groupId>
                 <artifactId>service-api</artifactId>
                 <version>${project.version}</version>
-            </dependency>-->
+            </dependency>
+            <dependency>
+                <groupId>com.cafemenu</groupId>
+                <artifactId>rest-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

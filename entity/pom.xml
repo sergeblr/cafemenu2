@@ -22,6 +22,13 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
+
+    <dependency>  <!-- Lombok @Data - for entity/model hashcode, equals, getters & setters autoGEN -->
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.10</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 
 </project>

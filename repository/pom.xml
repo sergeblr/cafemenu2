@@ -49,11 +49,11 @@
       <scope>runtime</scope>
     </dependency>
 
-    <dependency>  <!-- PostgreSQL tests embedded DB -->
+    <!--<dependency>  &lt;!&ndash; PostgreSQL tests embedded DB &ndash;&gt;
       <groupId>com.opentable.components</groupId>
       <artifactId>otj-pg-embedded</artifactId>
       <version>0.13.1</version>
-    </dependency>
+    </dependency>-->
 
 <!--    <dependency>  &lt;!&ndash; Embedded PostgreSQL for tests &ndash;&gt;
       <groupId>io.zonky.test</groupId>
