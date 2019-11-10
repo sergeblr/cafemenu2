@@ -48,6 +48,16 @@
       <artifactId>postgresql</artifactId>
       <scope>runtime</scope>
     </dependency>
+    <dependency>  <!-- MySQL -->
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>  <!-- H2 inMem -->
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
 
     <!--<dependency>  &lt;!&ndash; PostgreSQL tests embedded DB &ndash;&gt;
       <groupId>com.opentable.components</groupId>
@@ -62,11 +72,7 @@
       <scope>test</scope>
     </dependency>-->
 
-    <dependency>  <!-- H2 inMem -->
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <scope>runtime</scope>
-    </dependency>
+
 
   </dependencies>
 
