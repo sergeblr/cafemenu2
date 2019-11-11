@@ -29,7 +29,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 //@AutoConfigureEmbeddedDatabase
 //@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:import-test.sql")     // Run this SQL before EACH test
 @Sql(scripts = "classpath:import-test.sql")     // Run this SQL script before test
-@SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
+@SqlMergeMode(SqlMergeMode.MergeMode.MERGE)     // Do not add SQL data each time script runs (merge-mode)
 public class ItemRepositoryTest {
 
     private static final String WRAP = "Wrap";
