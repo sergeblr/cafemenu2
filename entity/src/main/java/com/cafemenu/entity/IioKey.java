@@ -1,20 +1,24 @@
-/**package com.cafemenu.entity;
+package com.cafemenu.entity;
 
+import lombok.Data;
+
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-@Embeddable
+@Data
 public class IioKey implements Serializable {
-    protected Integer orderId;
-    protected Integer itemId;
 
-    public IioKey() {
+    private Integer orderId;
+
+    private Integer itemId;
+
+/*    public IioKey() {
         //
     }
 
     public IioKey(Integer orderId, Integer itemId) {
         this.orderId = orderId;
         this.itemId = itemId;
-    }
+    }*/
 }
-**/
