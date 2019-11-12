@@ -24,8 +24,8 @@ public class Order {
     @Column(name = "order_date_time", updatable = false, nullable = false)
     private LocalDateTime orderDateTime;
 
-    @OneToMany(mappedBy = "iio_order_id", fetch = FetchType.LAZY)        // cascade = CascadeType.ALL -> ALL operations will be on related entities, by default - no any operations will be...
-    private List<ItemInOrder> iio;
-
+    @OneToMany(mappedBy = "order_iio", fetch = FetchType.LAZY)      // fetch = FetchType.LAZY -> List IIO loads only by demand
+                                                                    // cascade = CascadeType.ALL -> ALL operations will be on related entities, by default - no any operations will be...
+    private List<ItemInOrder> itemInOrders;
 
 }

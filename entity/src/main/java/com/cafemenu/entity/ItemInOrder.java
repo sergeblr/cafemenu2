@@ -32,9 +32,13 @@ import java.math.BigDecimal;
 @Table(name = "item_in_order")
 public class ItemInOrder {
 
-/*    @Id
-    @Column(name = "iio_order_id", updatable = true, nullable = false)
-    private Integer iioOrderId;*/
+    @Id
+
+    //@Column(name = "iio_order_id", updatable = true, nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "iio_order_id", referencedColumnName = "order_id", nullable = false)
+    private Order order_iio;
+    //private Integer iioOrderId;
 
     @Id
     @Column(name = "iio_item_id", updatable = true, nullable = false)
@@ -49,9 +53,5 @@ public class ItemInOrder {
     @Column(name = "iio_item_count", updatable = true, nullable = false)
     private Integer iioItemCount;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "iio_order_id", nullable = false)
-    private Order order;
 
 }
