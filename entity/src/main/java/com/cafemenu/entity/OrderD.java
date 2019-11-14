@@ -20,11 +20,12 @@ public class OrderD {
     @Column(name = "order_employee_id", updatable = true, nullable = false)
     private Integer orderEmployeeId;
 
-    @CreationTimestamp
     @Column(name = "order_date_time", updatable = false, nullable = false)
+    @CreationTimestamp
     private LocalDateTime orderDateTime;
 
     @OneToMany(mappedBy = "order_iio", fetch = FetchType.LAZY)      // fetch = FetchType.LAZY -> List IIO loads only by demand
     private List<ItemInOrder> itemInOrders;                            // cascade = CascadeType.ALL -> ALL operations will be on related entities, by default - no any operations will be...
+
 
 }

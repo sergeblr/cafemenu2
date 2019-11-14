@@ -13,26 +13,28 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@PropertySource("classpath:sql.properties")
 @Repository
 public interface OrderDRepository extends JpaRepository<OrderD, Integer> {
-
-    @Value("${order.findOrdersDTOByDateTime}")
-    private String findOrdersDTOByDateTimeSql;
-
-    @Value("${orderDTO.findAllWithSum}")
-    private String findAllDTOSql;
 
     // Implemented: findById(id), findAll, deleteById(id), save(Item)
 
     // Additive to basic CRUD:
     Optional<OrderD> findOrderDByOrderId(Integer orderId);
 
-    @Query(findAllDTOSql)
+    @Query(value = "select o.order_id as orderId, o.employee_id as employeeId," +
+            " o.order_date_time as orderDateTime, sum(iio.iio_item_count) as itemsQuantity," +
+            " sum(iio.iio_item_price * iio.iio_item_count) as summaryPrice from order_d o" +
+            " left join item_in_order iio on o.order_id = iio.iio_order_id group by o.order_id order by o.order_id",
+            nativeQuery = true)
     List<OrderDTO> findAllDTO();
 
-    @Query(findOrdersDTOByDateTimeSql)
-
+    @Query(value = "select o.order_id as orderId, o.employee_id as employeeId," +
+            " o.order_date_time as orderDateTime, sum(iio.iio_item_count) as itemsQuantity," +
+            " sum(iio.iio_item_price * iio.iio_item_count) as summaryPrice from order_d o" +
+            " left join item_in_order iio on o.order_id = iio.iio_order_id" +
+            " where order_date_time between :orderDateTimeStart AND :orderDateTimeEnd" +
+            " group by o.order_id order by o.order_id",
+            nativeQuery = true)
     List<OrderDTO> findOrdersDTOByDateTime(
             @Param("orderDateTimeStart") LocalDateTime startDateTime,
             @Param("orderDateTimeEnd") LocalDateTime endDateTime);

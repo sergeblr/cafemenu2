@@ -45,7 +45,7 @@ public class OrderDRepositoryTest {
         testOrderD.setOrderEmployeeId(EMPLOYEE_ID);
         OrderD newOrderD = orderDRepository.save(testOrderD);
         assertNotNull(newOrderD.getOrderId());
-        assertEquals(new Integer(EMPLOYEE_ID),newOrderD.getOrderEmployeeId());
+        assertEquals(new Integer(EMPLOYEE_ID), newOrderD.getOrderEmployeeId());
         assertNotNull(newOrderD.getOrderDateTime());
     }
 
@@ -68,7 +68,7 @@ public class OrderDRepositoryTest {
         testOrderD = orderDRepository.save(testOrderD);
         List<OrderD> orders = orderDRepository.findAll();
         int sizeBefore = orders.size();
-        orderDRepository.delete(testOrderD.getOrderId());
+        orderDRepository.deleteById(testOrderD.getOrderId());
         assertTrue((sizeBefore - 1) == orderDRepository.findAll().size());
     }
 
@@ -81,13 +81,12 @@ public class OrderDRepositoryTest {
 
     @Test
     public void findOrderByOrderId() {
-        Integer orderId = 1;
         OrderD testOrderD = new OrderD();
         testOrderD.setOrderEmployeeId(EMPLOYEE_ID);
         testOrderD = orderDRepository.save(testOrderD);
-        OrderD findOrderD = orderDRepository.findOrderDByOrderId(orderId).get();
+        OrderD findOrderD = orderDRepository.findOrderDByOrderId(testOrderD.getOrderId()).get();
         assertNotNull(findOrderD);
-        assertTrue(findOrderD.getOrderId().equals(orderId));
+        assertTrue(findOrderD.getOrderId().equals(testOrderD.getOrderId()));
         assertEquals(EMPLOYEE_ID, findOrderD.getOrderEmployeeId());
     }
 
