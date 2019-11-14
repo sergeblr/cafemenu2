@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Data     // @Data = @ToString, @EqualsAndHashCode, @Getter / @Setter and @RequiredArgsConstructor together.
 @Table(name = "order_d")
-public class Order {
+public class OrderD {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,6 @@ public class Order {
     private LocalDateTime orderDateTime;
 
     @OneToMany(mappedBy = "order_iio", fetch = FetchType.LAZY)      // fetch = FetchType.LAZY -> List IIO loads only by demand
-                                                                    // cascade = CascadeType.ALL -> ALL operations will be on related entities, by default - no any operations will be...
-    private List<ItemInOrder> itemInOrders;
+    private List<ItemInOrder> itemInOrders;                            // cascade = CascadeType.ALL -> ALL operations will be on related entities, by default - no any operations will be...
 
 }

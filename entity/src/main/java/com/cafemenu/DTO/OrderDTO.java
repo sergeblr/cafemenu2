@@ -1,11 +1,13 @@
-/**package com.cafemenu.DTO;
+package com.cafemenu.DTO;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Data
 public class OrderDTO {
 
     private Integer orderId;
@@ -19,22 +21,4 @@ public class OrderDTO {
 
     private Integer itemsQuantity;
 
-    public Integer getOrderId() { return orderId; }
-    public void setOrderId(Integer orderId) { this.orderId = orderId; }
-
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public LocalDateTime getOrderDateTime() { return orderDateTime; }
-    public void setOrderDateTime(LocalDateTime orderDateTime) { this.orderDateTime = orderDateTime; }
-
-    public BigDecimal getSummaryPrice() { return summaryPrice; }
-    public void setSummaryPrice(BigDecimal summaryPrice) { this.summaryPrice = summaryPrice; }
-
-    public Integer getItemsQuantity() { return itemsQuantity; }
-    public void setItemsQuantity(Integer itemsQuantity) { this.itemsQuantity = itemsQuantity; }
-}**/
+}

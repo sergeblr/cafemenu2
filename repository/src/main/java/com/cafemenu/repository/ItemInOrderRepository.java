@@ -13,10 +13,8 @@ public interface ItemInOrderRepository extends JpaRepository<ItemInOrder, Intege
     // Implemented: findById(id), findAll, deleteById(id), save(Item)
 
     // Additive to basic CRUD:
-    List<ItemInOrder> findItemInOrdersByOrder_iio   //findOrderByOrderId(String itemName);
-
-
-
-    //TODO: List<>
+    List<ItemInOrder> findItemInOrdersByIioOrderId(Integer iioOrderId);
+    Optional<ItemInOrder> findItemInOrderByIioOrderIdAndIioItemId(Integer iioOrderId, Integer iioItemId);
+    void deleteItemInOrderByIioOrderIdAndIioItemId(Integer iioOrderId, Integer iioItemId);
 
 }

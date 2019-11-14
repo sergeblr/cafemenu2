@@ -1,9 +1,11 @@
-/**package com.cafemenu.DTO;
+package com.cafemenu.DTO;
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
+@Data
 public class DateTimeFilterDTO {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
@@ -17,19 +19,4 @@ public class DateTimeFilterDTO {
         this.endDateTime = LocalDateTime.MAX;
     }
 
-    public LocalDateTime getStartDateTime() {
-        return startDateTime;
-    }
-
-    public void setStartDateTime(LocalDateTime startDateTime) {
-        this.startDateTime = startDateTime;
-    }
-
-    public LocalDateTime getEndDateTime() {
-        return endDateTime;
-    }
-
-    public void setEndDateTime(LocalDateTime endDateTime) {
-        this.endDateTime = endDateTime;
-    }
-}**/
+}
